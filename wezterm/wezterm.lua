@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local utils = require("utils")
 local keybinds = require("keybinds")
--- local scheme = wezterm.get_builtin_color_schemes()["nord"]
+--local scheme = wezterm.get_builtin_color_schemes()["user"]
 local gpus = wezterm.gui.enumerate_gpus()
 require("on")
 
@@ -83,8 +83,8 @@ local local_config = load_local_config("local")
 local config = {
 	-- font = wezterm.font("Cica"),
 	-- font_size = 10.0,
-	font = wezterm.font("Fira Code"),
-	font_size = 14,
+	font = wezterm.font("MesloLGL Nerd Font"),
+	font_size = 18,
 	-- cell_width = 1.1,
 	-- line_height = 1.1,
 	-- font_rules = {
@@ -98,6 +98,8 @@ local config = {
 	-- 		font = wezterm.font("Cica", { weight = "Bold", italic = true }),
 	-- 	},
 	-- },
+	initial_rows = 40,
+	initial_cols = 120,
 	check_for_updates = false,
 	use_ime = true,
 	ime_preedit_rendering = "Builtin",
@@ -111,10 +113,10 @@ local config = {
 	enable_wayland = enable_wayland(),
 	-- https://github.com/wez/wezterm/issues/1772
 	-- enable_wayland = true,
-	color_scheme = "nordfox",
+	color_scheme = "user",
 	color_scheme_dirs = { os.getenv("HOME") .. "/.config/wezterm/colors/" },
-	hide_tab_bar_if_only_one_tab = false,
-	adjust_window_size_when_changing_font_size = false,
+	hide_tab_bar_if_only_one_tab = true,
+	adjust_window_size_when_changing_font_size = true,
 	selection_word_boundary = " \t\n{}[]()\"'`,;:│=&!%",
 	window_padding = {
 		left = 0,
@@ -129,15 +131,15 @@ local config = {
 			--new_tab = { bg_color = "#2e3440", fg_color = scheme.ansi[8], intensity = "Bold" },
 			--new_tab_hover = { bg_color = scheme.ansi[1], fg_color = scheme.brights[8], intensity = "Bold" },
 			-- format-tab-title
-			-- active_tab = { bg_color = "#121212", fg_color = "#FCE8C3" },
-			-- inactive_tab = { bg_color = scheme.background, fg_color = "#FCE8C3" },
-			-- inactive_tab_hover = { bg_color = scheme.ansi[1], fg_color = "#FCE8C3" },
+			--active_tab = { bg_color = "#121212", fg_color = "#FCE8C3" },
+			--inactive_tab = { bg_color = scheme.background, fg_color = "#FCE8C3" },
+			--inactive_tab_hover = { bg_color = scheme.ansi[1], fg_color = "#FCE8C3" },
 		},
 	},
-	exit_behavior = "CloseOnCleanExit",
+	--	exit_behavior = "CloseOnCleanExit",
 	tab_bar_at_bottom = false,
 	window_close_confirmation = "AlwaysPrompt",
-	-- window_background_opacity = 0.8,
+	window_background_opacity = 0.9,
 	disable_default_key_bindings = true,
 	-- visual_bell = {
 	-- 	fade_in_function = "EaseIn",
@@ -167,26 +169,26 @@ end
 config.hyperlink_rules = {
 	-- Matches: a URL in parens: (URL)
 	{
-		regex = '\\((\\w+://\\S+)\\)',
-		format = '$1',
+		regex = "\\((\\w+://\\S+)\\)",
+		format = "$1",
 		highlight = 1,
 	},
 	-- Matches: a URL in brackets: [URL]
 	{
-		regex = '\\[(\\w+://\\S+)\\]',
-		format = '$1',
+		regex = "\\[(\\w+://\\S+)\\]",
+		format = "$1",
 		highlight = 1,
 	},
 	-- Matches: a URL in curly braces: {URL}
 	{
-		regex = '\\{(\\w+://\\S+)\\}',
-		format = '$1',
+		regex = "\\{(\\w+://\\S+)\\}",
+		format = "$1",
 		highlight = 1,
 	},
 	-- Matches: a URL in angle brackets: <URL>
 	{
-		regex = '<(\\w+://\\S+)>',
-		format = '$1',
+		regex = "<(\\w+://\\S+)>",
+		format = "$1",
 		highlight = 1,
 	},
 	-- Then handle URLs not wrapped in brackets
@@ -195,14 +197,14 @@ config.hyperlink_rules = {
 		--regex = '\\b\\w+://\\S+[)/a-zA-Z0-9-]+',
 		--format = '$0',
 		-- After
-		regex = '[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)',
-		format = '$1',
+		regex = "[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)",
+		format = "$1",
 		highlight = 1,
 	},
 	-- implicit mailto link
 	{
-		regex = '\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b',
-		format = 'mailto:$0',
+		regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
+		format = "mailto:$0",
 	},
 }
 table.insert(config.hyperlink_rules, {

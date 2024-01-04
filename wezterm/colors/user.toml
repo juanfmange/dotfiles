@@ -2,8 +2,8 @@
 # Style: nordfox
 # Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/nordfox/nightfox_wezterm.toml
 [colors]
-foreground = "#b9bfca"
-background = "#242933"
+foreground = "#bcbcbc"
+background = "#0d1117"
 cursor_bg = "#b9bfca"
 cursor_border = "#b9bfca"
 cursor_fg = "#2e3440"
@@ -32,5 +32,5 @@ brights = [
 compose_cursor = "#f0d399"
 
 [metadata]
-name = 'nordfox'
-origin_url = 'https://github.com/edeneast/nightfox.nvim/raw/main/extra/nordfox/nightfox_wezterm.toml'
+name = 'user'
+#origin_url = 'https://github.com/edeneast/nightfox.nvim/raw/main/extra/nordfox/nightfox_wezterm.toml'
